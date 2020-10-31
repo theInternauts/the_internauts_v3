@@ -1,11 +1,20 @@
       var canvas = document.querySelector('#sparkleBGD'),
+            rect = canvas.getBoundingClientRect(),
              ctx = canvas.getContext('2d'),
        particles = [],
-    patriclesNum = 500,
-               w = window.outerWidth,
-               h = window.outerHeight,
+    patriclesNum = 100,
+               w = Math.round (devicePixelRatio * rect.right) - Math.round (devicePixelRatio * rect.left),
+               h = Math.round (devicePixelRatio * rect.bottom) - Math.round (devicePixelRatio * rect.top),
           colors = ['#c3aeb4','#85818b','#aecdda','#85818b','#85818b'],
- maxParticleDist = 30;
+ maxParticleDist = 80,
+         vxScale = 4,
+     vxScaleDown = 1.5;
+
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = w;
+    canvas.height = h;
+
+
 
           // colors = ['#f35d4f','#f36849','#c0d988','#6ddaf1','#f1e85b'],
     function Factory(){
@@ -13,9 +22,8 @@
       this.y =  Math.round( Math.random() * h);
       this.rad = Math.random();
       this.rgba = colors[ Math.round( Math.random() * 3) ];
-      this.vx = Math.random() - Math.random();
-      this.vy = Math.random() - Math.random();
-
+      this.vx = Math.round( Math.random() * vxScale) - vxScaleDown;
+      this.vy = Math.round( Math.random() * vxScale) - vxScaleDown;
     }
 
     function draw(){
@@ -23,7 +31,7 @@
       ctx.globalCompositeOperation = 'overlay';
       for(var i = 0;i < patriclesNum; i++){
         var temp = particles[i];
-        var factor = 0.01;
+        var factor = 0.5;
 
         for(var j = 0; j<patriclesNum; j++){
 
@@ -36,7 +44,7 @@
               ctx.moveTo(temp.x, temp.y);
               ctx.lineTo(temp2.x, temp2.y);
               ctx.stroke();
-              factor+= 0.2;
+              factor+=0.5;
            }
         }
 
