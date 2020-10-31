@@ -10,13 +10,10 @@
          vxScale = 4,
      vxScaleDown = 1.5;
 
-    var rect = canvas.getBoundingClientRect();
     canvas.width = w;
     canvas.height = h;
 
-
-
-          // colors = ['#f35d4f','#f36849','#c0d988','#6ddaf1','#f1e85b'],
+    // colors = ['#f35d4f','#f36849','#c0d988','#6ddaf1','#f1e85b'],
     function Factory(){
       this.x =  Math.round( Math.random() * w);
       this.y =  Math.round( Math.random() * h);
