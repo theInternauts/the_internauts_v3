@@ -1,17 +1,19 @@
       var canvas = document.querySelector('#sparkleBGD'),
             rect = canvas.getBoundingClientRect(),
+             dpr = window.devicePixelRatio || 1,
              ctx = canvas.getContext('2d'),
        particles = [],
     patriclesNum = 100,
-               w = Math.round (devicePixelRatio * rect.right) - Math.round (devicePixelRatio * rect.left),
-               h = Math.round (devicePixelRatio * rect.bottom) - Math.round (devicePixelRatio * rect.top),
-          colors = ['#c3aeb4','#85818b','#aecdda','#85818b','#85818b'],
+               w = Math.round (dpr * rect.right) - Math.round (dpr * rect.left),
+               h = Math.round (dpr * rect.bottom) - Math.round (dpr * rect.top),
+          colors = ['#cdb9be','#85818b','#abcdda','#85818b','#85818b'],
  maxParticleDist = 80,
-         vxScale = 4,
+         vxScale = 2,
      vxScaleDown = 1.5;
 
     canvas.width = w;
     canvas.height = h;
+    ctx.scale(dpr, dpr);
 
     // colors = ['#f35d4f','#f36849','#c0d988','#6ddaf1','#f1e85b'],
     function Factory(){
@@ -41,7 +43,7 @@
               ctx.moveTo(temp.x, temp.y);
               ctx.lineTo(temp2.x, temp2.y);
               ctx.stroke();
-              factor+=0.5;
+              factor+=0.3;
            }
         }
 
